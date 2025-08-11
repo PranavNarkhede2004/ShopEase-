@@ -19,3 +19,11 @@ export interface Category {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export interface User {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+}

@@ -1,5 +1,5 @@
 // Authentication utility functions
-const API_BASE_URL = 'http://localhost:5002';
+import { api } from '@/services/api';
 
 export interface User {
   _id: string;
@@ -22,21 +22,7 @@ export async function signUp(
   email: string,
   password: string
 ): Promise<AuthResponse> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ firstName, lastName, email, password }),
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Failed to sign up');
-  }
-
-  return data;
+  return api.signUp({ firstName, lastName, email, password });
 }
 
 // Sign in function
@@ -44,21 +30,7 @@ export async function signIn(
   email: string,
   password: string
 ): Promise<AuthResponse> {
-  const response = await fetch(`${API_BASE_URL}/api/auth/signin`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email, password }),
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Failed to sign in');
-  }
-
-  return data;
+  return api.signIn({ email, password });
 }
 
 // Store token in localStorage

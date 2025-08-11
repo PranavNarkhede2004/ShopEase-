@@ -7,12 +7,14 @@ import CategoriesSection from '@/components/home/CategoriesSection';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import FeaturesSection from '@/components/home/FeaturesSection';
 import NewsletterSection from '@/components/home/NewsletterSection';
+import AboutSection from '@/components/home/AboutSection';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <HeroSection />
+      <AboutSection />
       <CategoriesSection />
       <FeaturedProducts />
       <FeaturesSection />

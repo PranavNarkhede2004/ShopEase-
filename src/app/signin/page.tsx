@@ -4,6 +4,7 @@ import { Eye, EyeOff, Lock, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from '@/contexts/AuthContext';
+import { signIn, setToken } from '@/utils/auth';
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,25 +32,10 @@ export default function SignIn() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5002/api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to sign in");
-      }
-
+      const data = await signIn(formData.email, formData.password);
+      
       // Store token in localStorage
-      localStorage.setItem("token", data.token);
+      setToken(data.token);
       
       // Update AuthContext state immediately
       const userData = {

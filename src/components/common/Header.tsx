@@ -2,7 +2,7 @@
 
 import { ShoppingCart, Search, Heart, UserCircle } from 'lucide-react';
 import Link from 'next/link';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function Header() {
