@@ -55,12 +55,12 @@ export default function OrdersPage() {
                         <span className="font-semibold text-gray-900">{item.name}</span>
                         <span className="text-xs text-gray-500">Qty: {item.quantity || 1}</span>
                       </div>
-                      <span className="font-semibold text-blue-700 text-lg">${(item.price * (item.quantity || 1)).toFixed(2)}</span>
+                        <span className="font-semibold text-blue-700 text-lg">₹{(item.price * (item.quantity || 1)).toLocaleString("en-IN")}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 flex justify-between items-center">
-                  <span className="text-green-700 font-bold text-xl">Total: ${order.total.toFixed(2)}</span>
+                  <span className="text-green-700 font-bold text-xl">Total: ₹{order.total.toLocaleString("en-IN")}</span>
                   <button className="ml-4 bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition-colors" onClick={() => handleCancelOrder(idx)}>
                     Cancel Order
                   </button>

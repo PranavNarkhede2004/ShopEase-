@@ -67,37 +67,37 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <h1 className="text-3xl font-bold text-gray-900">{category} Products</h1>
           <button className="flex items-center text-blue-600 hover:text-blue-700 font-semibold" onClick={() => router.push("/cart")}>Cart <ShoppingCart className="ml-2 h-5 w-5" /> <span className="ml-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">{cartCount}</span></button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div key={product.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-2 min-h-[180px] flex flex-col">
               <div className="relative">
-                <div className="aspect-square bg-gray-200 rounded-t-lg flex items-center justify-center">
-                  <div className="text-gray-400 text-4xl">🛒</div>
+                <div className="aspect-square bg-gray-200 rounded-t-lg flex items-center justify-center min-h-[60px]">
+                  <div className="text-gray-400 text-2xl">🛒</div>
                 </div>
                 {product.badge && (
-                  <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">{product.badge}</span>
+                  <span className="absolute top-1 left-1 bg-red-500 text-white text-[10px] px-1 py-0.5 rounded">{product.badge}</span>
                 )}
-                <button className="absolute top-2 right-2 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
-                  <Heart className="h-4 w-4 text-gray-400" />
+                <button className="absolute top-1 right-1 p-1 bg-white rounded-full shadow-sm hover:bg-gray-50">
+                  <Heart className="h-3 w-3 text-gray-400" />
                 </button>
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
-                <div className="flex items-center mb-2">
+              <div className="p-2 flex-1 flex flex-col justify-between">
+                <h3 className="font-semibold text-gray-900 mb-1 text-xs line-clamp-2">{product.name}</h3>
+                <div className="flex items-center mb-1">
                   <div className="flex items-center">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`h-4 w-4 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
+                      <Star key={i} className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500 ml-2">({product.reviews})</span>
+                  <span className="text-xs text-gray-500 ml-1">({product.reviews})</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold text-gray-900">${product.price}</span>
-                    <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center gap-1">
+                    <span className="text-sm font-bold text-gray-900">₹{product.price.toLocaleString("en-IN")}</span>
+                    <span className="text-xs text-gray-500 line-through">₹{product.originalPrice.toLocaleString("en-IN")}</span>
                   </div>
-                  <button className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors" onClick={() => handleAddToCart(product)}>
-                    <ShoppingCart className="h-4 w-4" />
+                  <button className="bg-blue-600 text-white p-1 rounded-lg hover:bg-blue-700 transition-colors" style={{ minWidth: 24, minHeight: 24 }} onClick={() => handleAddToCart(product)}>
+                    <ShoppingCart className="h-3 w-3" />
                   </button>
                 </div>
               </div>

@@ -130,19 +130,19 @@ export default function CartPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-bold text-gray-900 text-lg mb-1">{item.name}</h3>
-                    <div className="text-gray-500 text-sm">Unit Price: <span className="font-semibold text-blue-700">${item.price.toFixed(2)}</span></div>
+                    <div className="text-gray-500 text-sm">Unit Price: <span className="font-semibold text-blue-700">₹{item.price.toLocaleString("en-IN")}</span></div>
                     <div className="text-xs text-gray-400">{item.badge}</div>
                   </div>
                   <div className="flex flex-col items-end">
                     <div className="font-bold text-lg text-gray-900">Qty: {item.quantity || 1}</div>
-                    <div className="text-sm text-purple-700 font-semibold">Total: ${(item.price * (item.quantity || 1)).toFixed(2)}</div>
+                    <div className="text-sm text-purple-700 font-semibold">Total: ₹{(item.price * (item.quantity || 1)).toLocaleString("en-IN")}</div>
                   </div>
                 </div>
               ))}
             </div>
             <div className="bg-blue-50 rounded-xl p-6 flex flex-col items-center">
               <div className="text-xl font-bold text-gray-900 mb-2">Cart Total</div>
-              <div className="text-3xl font-extrabold text-blue-700">${total.toFixed(2)}</div>
+              <div className="text-3xl font-extrabold text-blue-700">₹{total.toLocaleString("en-IN")}</div>
               <div className="flex justify-end mt-8">
                 <button
                   className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
@@ -175,10 +175,10 @@ export default function CartPage() {
                       <h3 className="font-semibold mb-2">Order Summary</h3>
                       <ul className="mb-2 text-sm text-gray-700">
                         {cartItems.map((item, idx) => (
-                          <li key={idx}>{item.name} x {item.quantity || 1} - ${item.price * (item.quantity || 1)}</li>
+                          <li key={idx}>{item.name} x {item.quantity || 1} - ₹{(item.price * (item.quantity || 1)).toLocaleString("en-IN")}</li>
                         ))}
                       </ul>
-                      <div className="font-bold">Total: ${total.toFixed(2)}</div>
+                      <div className="font-bold">Total: ₹{total.toLocaleString("en-IN")}</div>
                     </div>
                     <div className="mb-4">
                       <label className="font-semibold mr-4">Payment Method:</label>

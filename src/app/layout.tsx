@@ -1,22 +1,13 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ShopEase - Your Premium Shopping Destination",
-  description: "Discover amazing products at unbeatable prices. Shop the latest trends in fashion, electronics, home & garden, and more.",
-  keywords: "e-commerce, online shopping, fashion, electronics, home decor",
-  authors: [{ name: "ShopEase Team" }],
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+  title: "ShopEase - Your E-Commerce Destination",
+  description: "Discover amazing products at ShopEase",
 };
 
 export default function RootLayout({
@@ -26,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+      <body className={inter.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
